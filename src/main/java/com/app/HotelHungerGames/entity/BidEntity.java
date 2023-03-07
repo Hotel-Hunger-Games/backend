@@ -2,7 +2,6 @@ package com.app.HotelHungerGames.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-
 import java.time.LocalDateTime;
 
 @Entity
@@ -13,10 +12,8 @@ public class BidEntity {
     @GeneratedValue
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "auction_id")
     private AuctionEntity auction;
     private String email;
-    @NotNull
     private int price;
     private LocalDateTime bidTime;
 
