@@ -20,4 +20,56 @@ public class RoomDto {
         this.stays = stays;
         this.images = images;
     }
+
+    public RoomDto() {
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAccommodationCapacity() {
+        return accommodationCapacity;
+    }
+
+    public void setAccommodationCapacity(int accommodationCapacity) {
+        this.accommodationCapacity = accommodationCapacity;
+    }
+
+    public List<Integer> getBedsSizes() {
+        return bedsSizes;
+    }
+
+    public void setBedsSizes(List<Integer> bedsSizes) {
+        this.bedsSizes = bedsSizes;
+    }
+
+    public List<StayEntity> getStays() {
+        return stays;
+    }
+
+    public void setStays(List<StayEntity> stays) {
+        this.stays = stays;
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
+    }
 }

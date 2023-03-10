@@ -1,9 +1,11 @@
 package com.app.HotelHungerGames.service.impl;
 
 import com.app.HotelHungerGames.dto.AuctionDto;
+import com.app.HotelHungerGames.dto.BidDto;
 import com.app.HotelHungerGames.entity.AuctionEntity;
 import com.app.HotelHungerGames.mapper.AuctionMapper;
 import com.app.HotelHungerGames.repository.AuctionRepository;
+import com.app.HotelHungerGames.repository.BidRepository;
 import com.app.HotelHungerGames.service.AuctionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,9 +17,12 @@ public class AuctionServiceImpl implements AuctionService {
 
     private final AuctionRepository auctionRepository;
 
+    private final BidRepository bidRepository;
+
     @Autowired
-    public AuctionServiceImpl(AuctionRepository auctionRepository) {
+    public AuctionServiceImpl(AuctionRepository auctionRepository, BidRepository bidRepository) {
         this.auctionRepository = auctionRepository;
+        this.bidRepository = bidRepository;
     }
 
     @Override
@@ -57,5 +62,11 @@ public class AuctionServiceImpl implements AuctionService {
         } else {
             return Optional.empty();
         }
+    }
+
+    public BidDto addBidToAuction(Long auctionId, BidDto bid) {
+        Optional<AuctionEntity> auctionEntity = auctionRepository.findById(auctionId);
+        auctionEntity.ifPresent(bid::setAuction);
+        return bid;
     }
 }

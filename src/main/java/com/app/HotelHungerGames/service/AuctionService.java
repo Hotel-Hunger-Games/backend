@@ -1,6 +1,7 @@
 package com.app.HotelHungerGames.service;
 
 import com.app.HotelHungerGames.dto.AuctionDto;
+import com.app.HotelHungerGames.dto.BidDto;
 import com.app.HotelHungerGames.entity.AuctionEntity;
 
 import java.util.List;
@@ -17,5 +18,7 @@ public interface AuctionService {
     Optional<AuctionDto> updateAuction(Long id, AuctionDto auction);
 
     Optional<AuctionDto> deleteAuction(Long id);
+
+    BidDto addBidToAuction(Long auctionId, BidDto bid);
 
 }
