@@ -35,4 +35,52 @@ public class AuctionEntity {
         this.auctionEndDate = auctionEndDate;
         this.bidHistory = bidHistory;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public StayEntity getStayEntity() {
+        return stayEntity;
+    }
+
+    public void setStayEntity(StayEntity stayEntity) {
+        this.stayEntity = stayEntity;
+    }
+
+    public int getStartPrice() {
+        return startPrice;
+    }
+
+    public void setStartPrice(int startPrice) {
+        this.startPrice = startPrice;
+    }
+
+    public Integer getActualPrice() {
+        return actualPrice;
+    }
+
+    public void setActualPrice(Integer actualPrice) {
+        this.actualPrice = actualPrice;
+    }
+
+    public Instant getAuctionEndDate() {
+        return auctionEndDate;
+    }
+
+    public void setAuctionEndDate(Instant auctionEndDate) {
+        this.auctionEndDate = auctionEndDate;
+    }
+
+    public List<BidEntity> getBidHistory() {
+        return bidHistory;
+    }
+
+    public void setBidHistory(List<BidEntity> bidHistory) {
+        this.bidHistory = bidHistory;
+    }
 }

@@ -10,10 +10,10 @@ public class BidDto {
     private Long id;
     private AuctionEntity auction;
     private String email;
-    private int price;
+    private Double price;
     private LocalDateTime bidTime;
 
-    public BidDto(Long id, AuctionEntity auction, String email, int price, LocalDateTime bidTime) {
+    public BidDto(Long id, AuctionEntity auction, String email, Double price, LocalDateTime bidTime) {
         this.id = id;
         this.auction = auction;
         this.email = email;

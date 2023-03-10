@@ -14,7 +14,7 @@ public class BidEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private AuctionEntity auction;
     private String email;
-    private int price;
+    private Double price;
     private LocalDateTime bidTime;
 
 
@@ -22,7 +22,7 @@ public class BidEntity {
     }
 
     public BidEntity(Long id, AuctionEntity auction, String email,
-                     int price, LocalDateTime bidTime) {
+                     Double price, LocalDateTime bidTime) {
         this.id = id;
         this.auction = auction;
         this.email = email;

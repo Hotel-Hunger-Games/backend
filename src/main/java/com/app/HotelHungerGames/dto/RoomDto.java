@@ -10,12 +10,14 @@ public class RoomDto {
     private int accommodationCapacity;
     private List<Integer> bedsSizes;
     private List<StayEntity> stays;
+    private List<String> images;
 
-    public RoomDto(Long id, String name, int accommodationCapacity, List<Integer> bedsSizes, List<StayEntity> stays) {
+    public RoomDto(Long id, String name, int accommodationCapacity, List<Integer> bedsSizes, List<StayEntity> stays, List<String> images) {
         this.id = id;
         this.name = name;
         this.accommodationCapacity = accommodationCapacity;
         this.bedsSizes = bedsSizes;
         this.stays = stays;
+        this.images = images;
     }
 }

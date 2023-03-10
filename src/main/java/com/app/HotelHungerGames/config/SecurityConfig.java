@@ -1,4 +1,4 @@
-package com.app.HotelHungerGames.security;
+package com.app.HotelHungerGames.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

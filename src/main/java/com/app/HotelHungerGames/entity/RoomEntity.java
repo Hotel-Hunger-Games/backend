@@ -20,16 +20,19 @@ public class RoomEntity {
     @OneToMany(mappedBy = "roomEntity", cascade = CascadeType.ALL)
     private List<StayEntity> stays = new ArrayList<>();
 
+    @ElementCollection
+    private List<String> images;
     public RoomEntity() {
 
     }
 
-    public RoomEntity(Long id, String name, int accommodationCapacity,
-                      List<Integer> bedsSizes, List<StayEntity> stays) {
+    public RoomEntity(Long id, String name, int accommodationCapacity, List<Integer> bedsSizes,
+                      List<StayEntity> stays, List<String> images) {
         this.id = id;
         this.name = name;
         this.accommodationCapacity = accommodationCapacity;
         this.bedsSizes = bedsSizes;
         this.stays = stays;
+        this.images = images;
     }
 }
