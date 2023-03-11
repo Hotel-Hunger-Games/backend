@@ -3,14 +3,18 @@ package com.app.HotelHungerGames.service.impl;
 import com.app.HotelHungerGames.dto.AuctionDto;
 import com.app.HotelHungerGames.dto.BidDto;
 import com.app.HotelHungerGames.entity.AuctionEntity;
+import com.app.HotelHungerGames.entity.BidEntity;
 import com.app.HotelHungerGames.mapper.AuctionMapper;
+import com.app.HotelHungerGames.mapper.BidMapper;
 import com.app.HotelHungerGames.repository.AuctionRepository;
 import com.app.HotelHungerGames.repository.BidRepository;
 import com.app.HotelHungerGames.service.AuctionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class AuctionServiceImpl implements AuctionService {
@@ -64,9 +68,22 @@ public class AuctionServiceImpl implements AuctionService {
         }
     }
 
-    public BidDto addBidToAuction(Long auctionId, BidDto bid) {
+    public List<BidDto> getBidHistoryByAuctionId(Long auctionId) {
+        List<BidEntity> bidEntities = bidRepository.getBidEntitiesByAuctionId(auctionId);
+        return bidEntities.stream()
+                .map(BidMapper::mapBidToDto)
+                .collect(Collectors.toList());
+    }
+
+    public Optional<BidDto> addBidToAuction(Long auctionId, BidDto bid) {
         Optional<AuctionEntity> auctionEntity = auctionRepository.findById(auctionId);
-        auctionEntity.ifPresent(bid::setAuction);
-        return bid;
+        if(auctionEntity.isPresent()){
+            bid.setAuction(AuctionMapper.mapAuctionToDto(auctionEntity.get()));
+            bidRepository.save(BidMapper.mapBidToEntity(bid));
+            return Optional.of(bid);
+        } else {
+            return Optional.empty();
+        }
+
     }
 }

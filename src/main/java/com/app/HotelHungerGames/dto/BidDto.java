@@ -8,12 +8,12 @@ import java.time.LocalDateTime;
 public class BidDto {
 
     private Long id;
-    private AuctionEntity auction;
+    private AuctionDto auction;
     private String email;
     private Double price;
     private LocalDateTime bidTime;
 
-    public BidDto(Long id, AuctionEntity auction, String email, Double price, LocalDateTime bidTime) {
+    public BidDto(Long id, AuctionDto auction, String email, Double price, LocalDateTime bidTime) {
         this.id = id;
         this.auction = auction;
         this.email = email;
@@ -32,11 +32,11 @@ public class BidDto {
         this.id = id;
     }
 
-    public AuctionEntity getAuction() {
+    public AuctionDto getAuction() {
         return auction;
     }
 
-    public void setAuction(AuctionEntity auction) {
+    public void setAuction(AuctionDto auction) {
         this.auction = auction;
     }
 

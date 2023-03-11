@@ -3,6 +3,8 @@ package com.app.HotelHungerGames.mapper;
 import com.app.HotelHungerGames.dto.RoomDto;
 import com.app.HotelHungerGames.entity.RoomEntity;
 
+import java.util.stream.Collectors;
+
 public class RoomMapper {
 
     public static RoomDto mapRoomToDto(RoomEntity roomEntity){
@@ -12,7 +14,10 @@ public class RoomMapper {
         roomDto.setBedsSizes(roomEntity.getBedsSizes());
         roomDto.setImages(roomEntity.getImages());
         roomDto.setName(roomEntity.getName());
-        roomDto.setStays(roomEntity.getStays());
+        roomDto.setStays(roomEntity.getStays()
+                .stream()
+                .map(StayMapper::mapStayToDto)
+                .collect(Collectors.toList()));
         return roomDto;
     }
 
@@ -21,7 +26,7 @@ public class RoomMapper {
         roomEntity.setId(roomDto.getId());
         roomEntity.setName(roomDto.getName());
         roomEntity.setAccommodationCapacity(roomDto.getAccommodationCapacity());
-        roomEntity.setStays(roomDto.getStays());
+        roomEntity.setStays(roomDto.getStays().stream().map(StayMapper::mapStayToEntity).collect(Collectors.toList()));
         roomEntity.setBedsSizes(roomDto.getBedsSizes());
         roomEntity.setImages(roomDto.getImages());
         return roomEntity;

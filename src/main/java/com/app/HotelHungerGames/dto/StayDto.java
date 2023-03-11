@@ -1,7 +1,5 @@
 package com.app.HotelHungerGames.dto;
 
-import com.app.HotelHungerGames.entity.AuctionEntity;
-import com.app.HotelHungerGames.entity.RoomEntity;
 import java.time.Instant;
 
 public class StayDto {
@@ -11,16 +9,75 @@ public class StayDto {
     private Instant auctionsStartDate;
     private Instant reservationStartDate;
     private Instant reservationEndDate;
-    private RoomEntity roomEntity;
-    private AuctionEntity auctionEntity;
+    private RoomDto roomDto;
+    private AuctionDto auctionDto;
 
-    public StayDto(Long id, String userId, Instant auctionsStartDate, Instant reservationStartDate, Instant reservationEndDate, RoomEntity roomEntity, AuctionEntity auctionEntity) {
+    public StayDto(Long id, String userId, Instant auctionsStartDate, Instant reservationStartDate, Instant reservationEndDate, RoomDto roomDto, AuctionDto auctionDto) {
         this.id = id;
         this.userId = userId;
         this.auctionsStartDate = auctionsStartDate;
         this.reservationStartDate = reservationStartDate;
         this.reservationEndDate = reservationEndDate;
-        this.roomEntity = roomEntity;
-        this.auctionEntity = auctionEntity;
+        this.roomDto = roomDto;
+        this.auctionDto = auctionDto;
+    }
+
+    public StayDto() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public Instant getAuctionsStartDate() {
+        return auctionsStartDate;
+    }
+
+    public void setAuctionsStartDate(Instant auctionsStartDate) {
+        this.auctionsStartDate = auctionsStartDate;
+    }
+
+    public Instant getReservationStartDate() {
+        return reservationStartDate;
+    }
+
+    public void setReservationStartDate(Instant reservationStartDate) {
+        this.reservationStartDate = reservationStartDate;
+    }
+
+    public Instant getReservationEndDate() {
+        return reservationEndDate;
+    }
+
+    public void setReservationEndDate(Instant reservationEndDate) {
+        this.reservationEndDate = reservationEndDate;
+    }
+
+    public RoomDto getRoomDto() {
+        return roomDto;
+    }
+
+    public void setRoomDto(RoomDto roomDto) {
+        this.roomDto = roomDto;
+    }
+
+    public AuctionDto getAuctionDto() {
+        return auctionDto;
+    }
+
+    public void setAuctionDto(AuctionDto auctionDto) {
+        this.auctionDto = auctionDto;
     }
 }

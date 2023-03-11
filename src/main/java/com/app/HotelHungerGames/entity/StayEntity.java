@@ -36,4 +36,60 @@ public class StayEntity {
         this.reservationStartDate = reservationStartDate;
         this.reservationEndDate = reservationEndDate;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public Instant getAuctionsStartDate() {
+        return auctionsStartDate;
+    }
+
+    public void setAuctionsStartDate(Instant auctionsStartDate) {
+        this.auctionsStartDate = auctionsStartDate;
+    }
+
+    public Instant getReservationStartDate() {
+        return reservationStartDate;
+    }
+
+    public void setReservationStartDate(Instant reservationStartDate) {
+        this.reservationStartDate = reservationStartDate;
+    }
+
+    public Instant getReservationEndDate() {
+        return reservationEndDate;
+    }
+
+    public void setReservationEndDate(Instant reservationEndDate) {
+        this.reservationEndDate = reservationEndDate;
+    }
+
+    public RoomEntity getRoomEntity() {
+        return roomEntity;
+    }
+
+    public void setRoomEntity(RoomEntity roomEntity) {
+        this.roomEntity = roomEntity;
+    }
+
+    public AuctionEntity getAuctionEntity() {
+        return auctionEntity;
+    }
+
+    public void setAuctionEntity(AuctionEntity auctionEntity) {
+        this.auctionEntity = auctionEntity;
+    }
 }

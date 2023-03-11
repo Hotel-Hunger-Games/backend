@@ -9,10 +9,10 @@ public class RoomDto {
     private String name;
     private int accommodationCapacity;
     private List<Integer> bedsSizes;
-    private List<StayEntity> stays;
+    private List<StayDto> stays;
     private List<String> images;
 
-    public RoomDto(Long id, String name, int accommodationCapacity, List<Integer> bedsSizes, List<StayEntity> stays, List<String> images) {
+    public RoomDto(Long id, String name, int accommodationCapacity, List<Integer> bedsSizes, List<StayDto> stays, List<String> images) {
         this.id = id;
         this.name = name;
         this.accommodationCapacity = accommodationCapacity;
@@ -57,11 +57,11 @@ public class RoomDto {
         this.bedsSizes = bedsSizes;
     }
 
-    public List<StayEntity> getStays() {
+    public List<StayDto> getStays() {
         return stays;
     }
 
-    public void setStays(List<StayEntity> stays) {
+    public void setStays(List<StayDto> stays) {
         this.stays = stays;
     }
 

@@ -8,15 +8,15 @@ import java.util.List;
 public class AuctionDto {
 
     private Long id;
-    private StayEntity stayEntity;
+    private StayDto stayDto;
     private int startPrice;
     private Integer actualPrice;
     private Instant auctionEndDate;
-    private List<BidEntity> bidHistory;
+    private List<BidDto> bidHistory;
 
-    public AuctionDto(Long id, StayEntity stayEntity, int startPrice, Integer actualPrice, Instant auctionEndDate, List<BidEntity> bidHistory) {
+    public AuctionDto(Long id, StayDto stayDto, int startPrice, Integer actualPrice, Instant auctionEndDate, List<BidDto> bidHistory) {
         this.id = id;
-        this.stayEntity = stayEntity;
+        this.stayDto = stayDto;
         this.startPrice = startPrice;
         this.actualPrice = actualPrice;
         this.auctionEndDate = auctionEndDate;
@@ -34,12 +34,12 @@ public class AuctionDto {
         this.id = id;
     }
 
-    public StayEntity getStayEntity() {
-        return stayEntity;
+    public StayDto getStayDto() {
+        return stayDto;
     }
 
-    public void setStayEntity(StayEntity stayEntity) {
-        this.stayEntity = stayEntity;
+    public void setStayDto(StayDto stayDto) {
+        this.stayDto = stayDto;
     }
 
     public int getStartPrice() {
@@ -66,11 +66,11 @@ public class AuctionDto {
         this.auctionEndDate = auctionEndDate;
     }
 
-    public List<BidEntity> getBidHistory() {
+    public List<BidDto> getBidHistory() {
         return bidHistory;
     }
 
-    public void setBidHistory(List<BidEntity> bidHistory) {
+    public void setBidHistory(List<BidDto> bidHistory) {
         this.bidHistory = bidHistory;
     }
 }
