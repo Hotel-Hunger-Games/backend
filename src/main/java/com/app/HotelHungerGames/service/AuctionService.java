@@ -19,6 +19,4 @@ public interface AuctionService {
 
     Optional<AuctionDto> deleteAuction(Long id);
 
-    Optional<BidDto> addBidToAuction(Long auctionId, BidDto bid);
-
 }

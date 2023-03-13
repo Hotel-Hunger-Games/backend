@@ -21,12 +21,10 @@ public class AuctionServiceImpl implements AuctionService {
 
     private final AuctionRepository auctionRepository;
 
-    private final BidRepository bidRepository;
 
     @Autowired
-    public AuctionServiceImpl(AuctionRepository auctionRepository, BidRepository bidRepository) {
+    public AuctionServiceImpl(AuctionRepository auctionRepository) {
         this.auctionRepository = auctionRepository;
-        this.bidRepository = bidRepository;
     }
 
     @Override
@@ -62,28 +60,12 @@ public class AuctionServiceImpl implements AuctionService {
     public Optional<AuctionDto> deleteAuction(Long id) {
         Optional<AuctionEntity> auctionEntity = auctionRepository.findById(id);
         if(auctionEntity.isPresent()){
+            auctionRepository.delete(auctionEntity.get());
             return auctionEntity.map(AuctionMapper::mapAuctionToDto);
         } else {
             return Optional.empty();
         }
     }
 
-    public List<BidDto> getBidHistoryByAuctionId(Long auctionId) {
-        List<BidEntity> bidEntities = bidRepository.getBidEntitiesByAuctionId(auctionId);
-        return bidEntities.stream()
-                .map(BidMapper::mapBidToDto)
-                .collect(Collectors.toList());
-    }
 
-    public Optional<BidDto> addBidToAuction(Long auctionId, BidDto bid) {
-        Optional<AuctionEntity> auctionEntity = auctionRepository.findById(auctionId);
-        if(auctionEntity.isPresent()){
-            bid.setAuction(AuctionMapper.mapAuctionToDto(auctionEntity.get()));
-            bidRepository.save(BidMapper.mapBidToEntity(bid));
-            return Optional.of(bid);
-        } else {
-            return Optional.empty();
-        }
-
-    }
 }
