@@ -19,4 +19,6 @@ public interface AuctionService {
 
     Optional<AuctionDto> deleteAuction(Long id);
 
+    Optional<AuctionEntity> getAuctionEntityById(Long id);
+
 }

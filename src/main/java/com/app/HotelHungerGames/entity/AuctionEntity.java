@@ -18,6 +18,7 @@ public class AuctionEntity {
     private StayEntity stayEntity;
     private int startPrice;
     private Integer actualPrice;
+    private Instant auctionsStartDate;
     private Instant auctionEndDate;
     @OneToMany(mappedBy = "auction", cascade = CascadeType.ALL)
     private List<BidEntity> bidHistory = new ArrayList<>();
@@ -27,11 +28,12 @@ public class AuctionEntity {
     }
 
     public AuctionEntity(Long id, StayEntity stayEntity, int startPrice,
-                         Integer actualPrice, Instant auctionEndDate, List<BidEntity> bidHistory) {
+                         Integer actualPrice, Instant auctionsStartDate, Instant auctionEndDate, List<BidEntity> bidHistory) {
         this.id = id;
         this.stayEntity = stayEntity;
         this.startPrice = startPrice;
         this.actualPrice = actualPrice;
+        this.auctionsStartDate = auctionsStartDate;
         this.auctionEndDate = auctionEndDate;
         this.bidHistory = bidHistory;
     }
@@ -62,6 +64,14 @@ public class AuctionEntity {
 
     public Integer getActualPrice() {
         return actualPrice;
+    }
+
+    public Instant getAuctionsStartDate() {
+        return auctionsStartDate;
+    }
+
+    public void setAuctionsStartDate(Instant auctionsStartDate) {
+        this.auctionsStartDate = auctionsStartDate;
     }
 
     public void setActualPrice(Integer actualPrice) {

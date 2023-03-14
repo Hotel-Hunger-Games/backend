@@ -1,6 +1,5 @@
 package com.app.HotelHungerGames.dto;
 
-import com.app.HotelHungerGames.entity.StayEntity;
 import java.util.List;
 
 public class RoomDto {

@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @Service
 public class RealTimeBiddingServiceImpl implements RealTimeBiddingService {
 
-    private final AuctionRepository auctionRepository;
+    private AuctionRepository auctionRepository;
     private final BidRepository bidRepository;
 
     @Autowired

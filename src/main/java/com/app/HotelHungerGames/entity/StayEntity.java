@@ -14,7 +14,6 @@ public class StayEntity {
     @Column(name = "id")
     private Long id;
     private String userId;
-    private Instant auctionsStartDate;
     private Instant reservationStartDate;
     private Instant reservationEndDate;
     @ManyToOne(fetch = FetchType.LAZY)
@@ -26,13 +25,12 @@ public class StayEntity {
     public StayEntity() {
     }
 
-    public StayEntity(Long id, String userId, AuctionEntity auctionEntity, RoomEntity roomEntity, Instant auctionsStartDate, Instant reservationStartDate,
+    public StayEntity(Long id, String userId, AuctionEntity auctionEntity, RoomEntity roomEntity, Instant reservationStartDate,
                       Instant reservationEndDate) {
         this.id = id;
         this.userId = userId;
         this.auctionEntity = auctionEntity;
         this.roomEntity = roomEntity;
-        this.auctionsStartDate = auctionsStartDate;
         this.reservationStartDate = reservationStartDate;
         this.reservationEndDate = reservationEndDate;
     }
@@ -53,13 +51,6 @@ public class StayEntity {
         this.userId = userId;
     }
 
-    public Instant getAuctionsStartDate() {
-        return auctionsStartDate;
-    }
-
-    public void setAuctionsStartDate(Instant auctionsStartDate) {
-        this.auctionsStartDate = auctionsStartDate;
-    }
 
     public Instant getReservationStartDate() {
         return reservationStartDate;

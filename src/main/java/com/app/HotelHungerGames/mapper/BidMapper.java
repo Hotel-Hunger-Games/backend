@@ -3,7 +3,9 @@ package com.app.HotelHungerGames.mapper;
 import com.app.HotelHungerGames.dto.BidDto;
 import com.app.HotelHungerGames.entity.BidEntity;
 
+
 public class BidMapper {
+
 
     public static BidDto mapBidToDto(BidEntity bidEntity) {
         BidDto bidDto = new BidDto();

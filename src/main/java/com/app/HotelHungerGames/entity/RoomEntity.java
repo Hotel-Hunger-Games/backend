@@ -1,6 +1,7 @@
 package com.app.HotelHungerGames.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ public class RoomEntity {
     @Id
     @GeneratedValue
     private Long id;
+    @NotNull
     private String name;
     private int accommodationCapacity;
     @ElementCollection

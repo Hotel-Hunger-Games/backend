@@ -33,6 +33,10 @@ public class AuctionServiceImpl implements AuctionService {
         return auctionEntity.map(AuctionMapper::mapAuctionToDto);
     }
 
+    public Optional<AuctionEntity> getAuctionEntityById(Long id) {
+        return auctionRepository.findById(id);
+    }
+
     @Override
     public List<AuctionDto> getAllAuctions() {
         List<AuctionEntity> auctionEntities = auctionRepository.findAll();

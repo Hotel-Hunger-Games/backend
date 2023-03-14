@@ -1,7 +1,5 @@
 package com.app.HotelHungerGames.dto;
 
-import com.app.HotelHungerGames.entity.BidEntity;
-import com.app.HotelHungerGames.entity.StayEntity;
 import java.time.Instant;
 import java.util.List;
 
@@ -9,16 +7,18 @@ public class AuctionDto {
 
     private Long id;
     private StayDto stayDto;
-    private int startPrice;
+    private Integer startPrice;
     private Integer actualPrice;
+    private Instant auctionsStartDate;
     private Instant auctionEndDate;
     private List<BidDto> bidHistory;
 
-    public AuctionDto(Long id, StayDto stayDto, int startPrice, Integer actualPrice, Instant auctionEndDate, List<BidDto> bidHistory) {
+    public AuctionDto(Long id, StayDto stayDto, Integer startPrice, Integer actualPrice, Instant auctionsStartDate, Instant auctionEndDate, List<BidDto> bidHistory) {
         this.id = id;
         this.stayDto = stayDto;
         this.startPrice = startPrice;
         this.actualPrice = actualPrice;
+        this.auctionsStartDate = auctionsStartDate;
         this.auctionEndDate = auctionEndDate;
         this.bidHistory = bidHistory;
     }
@@ -52,6 +52,18 @@ public class AuctionDto {
 
     public Integer getActualPrice() {
         return actualPrice;
+    }
+
+    public void setStartPrice(Integer startPrice) {
+        this.startPrice = startPrice;
+    }
+
+    public Instant getAuctionsStartDate() {
+        return auctionsStartDate;
+    }
+
+    public void setAuctionsStartDate(Instant auctionsStartDate) {
+        this.auctionsStartDate = auctionsStartDate;
     }
 
     public void setActualPrice(Integer actualPrice) {
