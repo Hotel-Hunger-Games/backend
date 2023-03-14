@@ -9,6 +9,7 @@ public class RoomDto {
     private int accommodationCapacity;
     private List<Integer> bedsSizes;
     private List<StayDto> stays;
+
     private List<String> images;
 
     public RoomDto(Long id, String name, int accommodationCapacity, List<Integer> bedsSizes, List<StayDto> stays, List<String> images) {

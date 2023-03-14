@@ -6,15 +6,17 @@ public class StayDto {
 
     private Long id;
     private String userId;
+    private Long auctionId;
     private Instant auctionsStartDate;
     private Instant reservationStartDate;
     private Instant reservationEndDate;
     private RoomDto roomDto;
     private AuctionDto auctionDto;
 
-    public StayDto(Long id, String userId, Instant auctionsStartDate, Instant reservationStartDate, Instant reservationEndDate, RoomDto roomDto, AuctionDto auctionDto) {
+    public StayDto(Long id, String userId, Long auctionId, Instant auctionsStartDate, Instant reservationStartDate, Instant reservationEndDate, RoomDto roomDto, AuctionDto auctionDto) {
         this.id = id;
         this.userId = userId;
+        this.auctionId = auctionId;
         this.auctionsStartDate = auctionsStartDate;
         this.reservationStartDate = reservationStartDate;
         this.reservationEndDate = reservationEndDate;
@@ -39,6 +41,14 @@ public class StayDto {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public Long getAuctionId() {
+        return auctionId;
+    }
+
+    public void setAuctionId(Long auctionId) {
+        this.auctionId = auctionId;
     }
 
     public Instant getAuctionsStartDate() {

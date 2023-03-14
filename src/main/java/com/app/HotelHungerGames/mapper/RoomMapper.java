@@ -14,10 +14,10 @@ public class RoomMapper {
         roomDto.setBedsSizes(roomEntity.getBedsSizes());
         roomDto.setImages(roomEntity.getImages());
         roomDto.setName(roomEntity.getName());
-        roomDto.setStays(roomEntity.getStays()
-                .stream()
-                .map(StayMapper::mapStayToDto)
-                .collect(Collectors.toList()));
+//        roomDto.setStays(roomEntity.getStays()
+//                .stream()
+//                .map(StayMapper::mapStayToDto)
+//                .collect(Collectors.toList()));
         return roomDto;
     }
 
