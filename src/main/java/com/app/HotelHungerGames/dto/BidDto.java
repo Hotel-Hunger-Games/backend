@@ -1,6 +1,7 @@
 package com.app.HotelHungerGames.dto;
 
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDateTime;
 
@@ -10,10 +11,10 @@ public class BidDto {
     private AuctionDto auction;
     private Long auctionId;
     private String email;
-    private Double price;
+    private BigDecimal price;
     private Instant bidTime;
 
-    public BidDto(Long id, AuctionDto auction, Long auctionId, String email, Double price, Instant bidTime) {
+    public BidDto(Long id, AuctionDto auction, Long auctionId, String email, BigDecimal price, Instant bidTime) {
         this.id = id;
         this.auction = auction;
         this.auctionId = auctionId;
@@ -57,11 +58,11 @@ public class BidDto {
         this.email = email;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

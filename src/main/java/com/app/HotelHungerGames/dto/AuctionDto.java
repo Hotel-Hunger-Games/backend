@@ -1,5 +1,6 @@
 package com.app.HotelHungerGames.dto;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.List;
 
@@ -7,19 +8,32 @@ public class AuctionDto {
 
     private Long id;
     private StayDto stayDto;
-    private Integer startPrice;
-    private Integer actualPrice;
-    private Instant auctionsStartDate;
-    private Instant auctionEndDate;
+    private BigDecimal startPrice;
+    private BigDecimal actualPrice;
+    private Instant startDate;
+    private Instant endDate;
     private List<BidDto> bidHistory;
 
-    public AuctionDto(Long id, StayDto stayDto, Integer startPrice, Integer actualPrice, Instant auctionsStartDate, Instant auctionEndDate, List<BidDto> bidHistory) {
+    @Override
+    public String toString() {
+        return "AuctionDto{" +
+                "id=" + id +
+                ", stayDto=" + stayDto +
+                ", startPrice=" + startPrice +
+                ", actualPrice=" + actualPrice +
+                ", auctionsStartDate=" + startDate +
+                ", auctionEndDate=" + endDate +
+                ", bidHistory=" + bidHistory +
+                '}';
+    }
+
+    public AuctionDto(Long id, StayDto stayDto, BigDecimal startPrice, BigDecimal actualPrice, Instant startDate, Instant endDate, List<BidDto> bidHistory) {
         this.id = id;
         this.stayDto = stayDto;
         this.startPrice = startPrice;
         this.actualPrice = actualPrice;
-        this.auctionsStartDate = auctionsStartDate;
-        this.auctionEndDate = auctionEndDate;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.bidHistory = bidHistory;
     }
 
@@ -42,40 +56,39 @@ public class AuctionDto {
         this.stayDto = stayDto;
     }
 
-    public int getStartPrice() {
+    public BigDecimal getStartPrice() {
         return startPrice;
     }
 
-    public void setStartPrice(int startPrice) {
+    public void setStartPrice(BigDecimal startPrice) {
         this.startPrice = startPrice;
     }
 
-    public Integer getActualPrice() {
+    public BigDecimal getActualPrice() {
         return actualPrice;
     }
 
-    public void setStartPrice(Integer startPrice) {
-        this.startPrice = startPrice;
-    }
-
-    public Instant getAuctionsStartDate() {
-        return auctionsStartDate;
-    }
-
-    public void setAuctionsStartDate(Instant auctionsStartDate) {
-        this.auctionsStartDate = auctionsStartDate;
-    }
-
-    public void setActualPrice(Integer actualPrice) {
+    public void setActualPrice(BigDecimal actualPrice) {
         this.actualPrice = actualPrice;
     }
 
-    public Instant getAuctionEndDate() {
-        return auctionEndDate;
+
+    public Instant getStartDate() {
+        return startDate;
     }
 
-    public void setAuctionEndDate(Instant auctionEndDate) {
-        this.auctionEndDate = auctionEndDate;
+    public void setStartDate(Instant startDate) {
+        this.startDate = startDate;
+    }
+
+
+
+    public Instant getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Instant endDate) {
+        this.endDate = endDate;
     }
 
     public List<BidDto> getBidHistory() {

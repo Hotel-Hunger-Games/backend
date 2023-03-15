@@ -1,5 +1,6 @@
 package com.app.HotelHungerGames.entity;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +11,7 @@ import jakarta.persistence.*;
 public class AuctionEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
@@ -19,8 +20,8 @@ public class AuctionEntity {
 
     private Long stayId;
 
-    private int startPrice;
-    private Integer actualPrice;
+    private BigDecimal startPrice;
+    private BigDecimal actualPrice;
     private Instant auctionsStartDate;
     private Instant auctionEndDate;
     @OneToMany(mappedBy = "auction", cascade = CascadeType.ALL)
@@ -30,8 +31,8 @@ public class AuctionEntity {
     public AuctionEntity() {
     }
 
-    public AuctionEntity(Long id, StayEntity stayEntity, Long stayId, int startPrice,
-                         Integer actualPrice, Instant auctionsStartDate, Instant auctionEndDate, List<BidEntity> bidHistory) {
+    public AuctionEntity(Long id, StayEntity stayEntity, Long stayId, BigDecimal startPrice,
+                         BigDecimal actualPrice, Instant auctionsStartDate, Instant auctionEndDate, List<BidEntity> bidHistory) {
         this.id = id;
         this.stayEntity = stayEntity;
         this.stayId = stayId;
@@ -66,15 +67,15 @@ public class AuctionEntity {
         this.stayEntity = stayEntity;
     }
 
-    public int getStartPrice() {
+    public BigDecimal getStartPrice() {
         return startPrice;
     }
 
-    public void setStartPrice(int startPrice) {
+    public void setStartPrice(BigDecimal startPrice) {
         this.startPrice = startPrice;
     }
 
-    public Integer getActualPrice() {
+    public BigDecimal getActualPrice() {
         return actualPrice;
     }
 
@@ -86,7 +87,7 @@ public class AuctionEntity {
         this.auctionsStartDate = auctionsStartDate;
     }
 
-    public void setActualPrice(Integer actualPrice) {
+    public void setActualPrice(BigDecimal actualPrice) {
         this.actualPrice = actualPrice;
     }
 
