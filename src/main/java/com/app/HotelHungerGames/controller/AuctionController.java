@@ -1,7 +1,6 @@
 package com.app.HotelHungerGames.controller;
 
 import com.app.HotelHungerGames.dto.AuctionDto;
-import com.app.HotelHungerGames.dto.StayDto;
 import com.app.HotelHungerGames.service.AuctionService;
 import com.app.HotelHungerGames.service.RoomService;
 import com.app.HotelHungerGames.service.StayService;

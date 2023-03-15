@@ -11,8 +11,6 @@ public class StayMapper {
         stayDto.setUserId(stayEntity.getUserId());
         stayDto.setAuctionId(stayEntity.getAuctionEntity().getId());
         stayDto.setRoomDto(RoomMapper.mapRoomToDto(stayEntity.getRoomEntity()));
-//        stayDto.setRoomId(stayEntity.getRoomEntity().getId());
-//        stayDto.setAuctionDto(AuctionMapper.mapAuctionToDto(stayEntity.getAuctionEntity()));
         stayDto.setReservationStartDate(stayEntity.getReservationStartDate());
         stayDto.setReservationEndDate(stayEntity.getReservationEndDate());
         return stayDto;

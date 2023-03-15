@@ -1,6 +1,5 @@
 package com.app.HotelHungerGames.controller;
 
-import com.app.HotelHungerGames.dto.AuctionDto;
 import com.app.HotelHungerGames.dto.RoomDto;
 import com.app.HotelHungerGames.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -10,30 +10,14 @@ public class StayDto {
     private Instant reservationStartDate;
     private Instant reservationEndDate;
     private RoomDto roomDto;
-    private AuctionDto auctionDto;
 
-    public StayDto(Long id, String userId, Long auctionId, Instant reservationStartDate, Instant reservationEndDate, RoomDto roomDto, AuctionDto auctionDto) {
+    public StayDto(Long id, String userId, Long auctionId, Instant reservationStartDate, Instant reservationEndDate, RoomDto roomDto) {
         this.id = id;
         this.userId = userId;
         this.auctionId = auctionId;
         this.reservationStartDate = reservationStartDate;
         this.reservationEndDate = reservationEndDate;
         this.roomDto = roomDto;
-        this.auctionDto = auctionDto;
-    }
-
-
-    @Override
-    public String toString() {
-        return "StayDto{" +
-                "id=" + id +
-                ", userId='" + userId + '\'' +
-                ", auctionId=" + auctionId +
-                ", reservationStartDate=" + reservationStartDate +
-                ", reservationEndDate=" + reservationEndDate +
-                ", roomDto=" + roomDto +
-                ", auctionDto=" + auctionDto +
-                '}';
     }
 
     public StayDto() {
@@ -87,11 +71,4 @@ public class StayDto {
         this.roomDto = roomDto;
     }
 
-    public AuctionDto getAuctionDto() {
-        return auctionDto;
-    }
-
-    public void setAuctionDto(AuctionDto auctionDto) {
-        this.auctionDto = auctionDto;
-    }
 }

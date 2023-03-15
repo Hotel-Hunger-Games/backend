@@ -14,19 +14,6 @@ public class AuctionDto {
     private Instant endDate;
     private List<BidDto> bidHistory;
 
-    @Override
-    public String toString() {
-        return "AuctionDto{" +
-                "id=" + id +
-                ", stayDto=" + stayDto +
-                ", startPrice=" + startPrice +
-                ", actualPrice=" + actualPrice +
-                ", auctionsStartDate=" + startDate +
-                ", auctionEndDate=" + endDate +
-                ", bidHistory=" + bidHistory +
-                '}';
-    }
-
     public AuctionDto(Long id, StayDto stayDto, BigDecimal startPrice, BigDecimal actualPrice, Instant startDate, Instant endDate, List<BidDto> bidHistory) {
         this.id = id;
         this.stayDto = stayDto;

@@ -17,9 +17,6 @@ public class AuctionEntity {
 
     @OneToOne(cascade = CascadeType.ALL)
     private StayEntity stayEntity;
-
-    private Long stayId;
-
     private BigDecimal startPrice;
     private BigDecimal actualPrice;
     private Instant auctionsStartDate;
@@ -31,11 +28,10 @@ public class AuctionEntity {
     public AuctionEntity() {
     }
 
-    public AuctionEntity(Long id, StayEntity stayEntity, Long stayId, BigDecimal startPrice,
+    public AuctionEntity(Long id, StayEntity stayEntity, BigDecimal startPrice,
                          BigDecimal actualPrice, Instant auctionsStartDate, Instant auctionEndDate, List<BidEntity> bidHistory) {
         this.id = id;
         this.stayEntity = stayEntity;
-        this.stayId = stayId;
         this.startPrice = startPrice;
         this.actualPrice = actualPrice;
         this.auctionsStartDate = auctionsStartDate;
@@ -49,14 +45,6 @@ public class AuctionEntity {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getStayId() {
-        return stayId;
-    }
-
-    public void setStayId(Long stayId) {
-        this.stayId = stayId;
     }
 
     public StayEntity getStayEntity() {

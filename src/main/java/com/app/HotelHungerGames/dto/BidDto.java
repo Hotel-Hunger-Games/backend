@@ -3,7 +3,6 @@ package com.app.HotelHungerGames.dto;
 
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.time.LocalDateTime;
 
 public class BidDto {
 
