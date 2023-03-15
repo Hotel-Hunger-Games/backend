@@ -2,6 +2,8 @@ package com.app.HotelHungerGames.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Entity
@@ -15,14 +17,14 @@ public class BidEntity {
     private AuctionEntity auction;
     private String email;
     private Double price;
-    private LocalDateTime bidTime;
+    private Instant bidTime;
 
 
     public BidEntity() {
     }
 
     public BidEntity(Long id, AuctionEntity auction, String email,
-                     Double price, LocalDateTime bidTime) {
+                     Double price, Instant bidTime) {
         this.id = id;
         this.auction = auction;
         this.email = email;
@@ -62,11 +64,11 @@ public class BidEntity {
         this.price = price;
     }
 
-    public LocalDateTime getBidTime() {
+    public Instant getBidTime() {
         return bidTime;
     }
 
-    public void setBidTime(LocalDateTime bidTime) {
+    public void setBidTime(Instant bidTime) {
         this.bidTime = bidTime;
     }
 }
