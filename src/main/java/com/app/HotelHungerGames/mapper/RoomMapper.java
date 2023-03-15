@@ -26,7 +26,12 @@ public class RoomMapper {
         roomEntity.setId(roomDto.getId());
         roomEntity.setName(roomDto.getName());
         roomEntity.setAccommodationCapacity(roomDto.getAccommodationCapacity());
-        roomEntity.setStays(roomDto.getStays().stream().map(StayMapper::mapStayToEntity).collect(Collectors.toList()));
+        if(roomDto.getStays() != null){
+            roomEntity.setStays(roomDto.getStays()
+                    .stream()
+                    .map(StayMapper::mapStayToEntity)
+                    .collect(Collectors.toList()));
+        }
         roomEntity.setBedsSizes(roomDto.getBedsSizes());
         roomEntity.setImages(roomDto.getImages());
         return roomEntity;

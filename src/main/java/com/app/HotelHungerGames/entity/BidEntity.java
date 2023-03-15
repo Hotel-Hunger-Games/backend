@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public class BidEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
     private AuctionEntity auction;

@@ -10,16 +10,15 @@ import java.time.Instant;
 public class StayEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
     private String userId;
     private Instant reservationStartDate;
     private Instant reservationEndDate;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private RoomEntity roomEntity;
-
-    @OneToOne
+    @OneToOne(mappedBy = "stayEntity", cascade = CascadeType.ALL)
     private AuctionEntity auctionEntity;
 
     public StayEntity() {

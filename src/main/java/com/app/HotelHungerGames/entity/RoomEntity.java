@@ -11,7 +11,7 @@ import java.util.List;
 public class RoomEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
     private String name;
@@ -19,7 +19,7 @@ public class RoomEntity {
     @ElementCollection
     private List<Integer> bedsSizes;
 
-    @OneToMany(mappedBy = "roomEntity", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "roomEntity")
     private List<StayEntity> stays = new ArrayList<>();
 
     @ElementCollection

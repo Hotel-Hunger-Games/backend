@@ -15,7 +15,7 @@ public class AuctionEntity {
     @Column(name = "id")
     private Long id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private StayEntity stayEntity;
 
     private Long stayId;

@@ -1,7 +1,10 @@
 package com.app.HotelHungerGames.controller;
 
 import com.app.HotelHungerGames.dto.AuctionDto;
+import com.app.HotelHungerGames.dto.StayDto;
 import com.app.HotelHungerGames.service.AuctionService;
+import com.app.HotelHungerGames.service.RoomService;
+import com.app.HotelHungerGames.service.StayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +20,15 @@ public class AuctionController {
 
 
     private final AuctionService auctionService;
+    private final StayService stayService;
+    private final RoomService roomService;
 
 
     @Autowired
-    public AuctionController(AuctionService auctionService) {
+    public AuctionController(AuctionService auctionService, StayService stayService, RoomService roomService) {
         this.auctionService = auctionService;
+        this.stayService = stayService;
+        this.roomService = roomService;
     }
 
     @GetMapping()
@@ -41,6 +48,7 @@ public class AuctionController {
 
     @PostMapping
     public ResponseEntity<?> addNewAuction(@RequestBody AuctionDto auction) {
+//        roomService.addNewRoom(auction.getStayDto().getRoomDto());
         auctionService.addNewAuction(auction);
         return new ResponseEntity<>(auction, HttpStatus.CREATED);
         }

@@ -20,12 +20,10 @@ public class StayMapper {
 
     public static StayEntity mapStayToEntity(StayDto stayDto){
         StayEntity stayEntity = new StayEntity();
-        stayEntity.setId(stayDto.getId());
         stayEntity.setUserId(stayDto.getUserId());
         stayEntity.setReservationStartDate(stayDto.getReservationStartDate());
         stayEntity.setReservationEndDate(stayDto.getReservationEndDate());
         stayEntity.setRoomEntity(RoomMapper.mapRoomToEntity(stayDto.getRoomDto()));
-        stayEntity.setAuctionEntity(AuctionMapper.mapAuctionToEntity(stayDto.getAuctionDto()));
         return stayEntity;
     }
 }

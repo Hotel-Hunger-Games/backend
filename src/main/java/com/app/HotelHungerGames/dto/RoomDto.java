@@ -24,6 +24,17 @@ public class RoomDto {
     public RoomDto() {
     }
 
+    @Override
+    public String toString() {
+        return "RoomDto{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", accommodationCapacity=" + accommodationCapacity +
+                ", bedsSizes=" + bedsSizes +
+                ", stays=" + stays +
+                ", images=" + images +
+                '}';
+    }
 
     public Long getId() {
         return id;

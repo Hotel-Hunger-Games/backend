@@ -20,7 +20,7 @@ public class BidMapper {
     public static BidEntity mapBidToEntity(BidDto bidDto) {
         BidEntity bidEntity = new BidEntity();
         bidEntity.setBidTime(bidDto.getBidTime());
-        bidEntity.setAuction(AuctionMapper.mapAuctionToEntity(bidDto.getAuction()));
+//        bidEntity.setAuction(AuctionMapper.mapAuctionToEntity(bidDto.getAuction()));
         bidEntity.setPrice(bidDto.getPrice());
         bidEntity.setId(bidDto.getId());
         bidEntity.setEmail(bidDto.getEmail());

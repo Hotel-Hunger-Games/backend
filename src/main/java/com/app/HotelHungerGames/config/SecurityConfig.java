@@ -32,6 +32,7 @@ class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
                 .requestMatchers(HttpMethod.GET, "/api/admin/**").hasAuthority("SCOPE_profile")
+                .requestMatchers(HttpMethod.POST, "/api/auction").hasAuthority("SCOPE_profile")
                 .anyRequest()
                 .permitAll();
         http.oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
