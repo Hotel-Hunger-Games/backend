@@ -23,7 +23,6 @@ public class AuctionMapper {
     }
 
     public static AuctionEntity mapAuctionToEntity(AuctionDto auctionDto) {
-        System.out.println(auctionDto.toString());
         AuctionEntity auctionEntity = new AuctionEntity();
         auctionEntity.setStayEntity(StayMapper.mapStayToEntity(auctionDto.getStayDto()));
         auctionEntity.setStartPrice(auctionDto.getStartPrice());

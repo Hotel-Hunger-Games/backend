@@ -1,20 +1,14 @@
 package com.app.HotelHungerGames.service.impl;
 
 import com.app.HotelHungerGames.dto.AuctionDto;
-import com.app.HotelHungerGames.dto.BidDto;
 import com.app.HotelHungerGames.entity.AuctionEntity;
-import com.app.HotelHungerGames.entity.BidEntity;
 import com.app.HotelHungerGames.mapper.AuctionMapper;
-import com.app.HotelHungerGames.mapper.BidMapper;
 import com.app.HotelHungerGames.repository.AuctionRepository;
-import com.app.HotelHungerGames.repository.BidRepository;
 import com.app.HotelHungerGames.service.AuctionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class AuctionServiceImpl implements AuctionService {

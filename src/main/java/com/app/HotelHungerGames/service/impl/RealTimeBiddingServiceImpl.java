@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @Service
 public class RealTimeBiddingServiceImpl implements RealTimeBiddingService {
 
-    private AuctionRepository auctionRepository;
+    private final AuctionRepository auctionRepository;
     private final BidRepository bidRepository;
 
     @Autowired
@@ -39,12 +39,19 @@ public class RealTimeBiddingServiceImpl implements RealTimeBiddingService {
     public Optional<BidDto> addBidToAuction(Long auctionId, BidDto bid) {
         Optional<AuctionEntity> auctionEntity = auctionRepository.findById(auctionId);
         if(auctionEntity.isPresent()){
+            AuctionEntity auction = auctionEntity.get();
             bid.setAuction(AuctionMapper.mapAuctionToDto(auctionEntity.get()));
             bidRepository.save(BidMapper.mapBidToEntity(bid));
+            updateAuctionPrice(bid, auction);
             return Optional.of(bid);
         } else {
             return Optional.empty();
         }
 
+    }
+
+    private void updateAuctionPrice(BidDto bid, AuctionEntity auction) {
+        auction.setActualPrice(bid.getPrice());
+        auctionRepository.save(auction);
     }
 }

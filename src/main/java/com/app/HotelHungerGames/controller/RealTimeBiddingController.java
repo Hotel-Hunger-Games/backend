@@ -22,30 +22,22 @@ import java.util.Optional;
 
 @Controller
 @CrossOrigin
-@RequestMapping("/api/bid")
+@RequestMapping("/api/auction/bid")
 public class RealTimeBiddingController {
 
-    private final AuctionService auctionService;
     private final RealTimeBiddingService realTimeBiddingService;
 
 
     @Autowired
-    public RealTimeBiddingController(AuctionService auctionService, RealTimeBiddingService realTimeBiddingService) {
-        this.auctionService = auctionService;
+    public RealTimeBiddingController(RealTimeBiddingService realTimeBiddingService) {
         this.realTimeBiddingService = realTimeBiddingService;
     }
 
     @MessageMapping("/{auctionId}")
     @SendTo("/ws-auction")
     public ResponseEntity<?> addBid(@PathVariable("auctionId") Long auctionId, BidDto bid){
-        Optional<AuctionDto> auction = auctionService.getAuctionById(auctionId);
-        if(auction.isPresent()){
-            realTimeBiddingService.addBidToAuction(auctionId, bid);
-            return new ResponseEntity<>(bid, HttpStatus.CREATED);
-        }
-        else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        realTimeBiddingService.addBidToAuction(auctionId, bid);
+        return new ResponseEntity<>(bid, HttpStatus.CREATED);
     }
 
     @GetMapping ("/{auctionId}")
