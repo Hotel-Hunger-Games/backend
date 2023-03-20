@@ -3,6 +3,7 @@ package com.app.HotelHungerGames.controller;
 import com.app.HotelHungerGames.dto.AuctionDto;
 import com.app.HotelHungerGames.service.AuctionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -55,6 +56,16 @@ public class AuctionController {
             return new ResponseEntity<>(auctionDto, HttpStatus.NOT_FOUND);
         }
 
+    }
+
+    @PutMapping("/{auctionId}/end")
+    public ResponseEntity<?> endAuction(@PathVariable("auctionId") Long auctionId){
+        Optional<AuctionDto> auctionEnding = auctionService.endAuction(auctionId);
+        if(auctionEnding.isPresent()){
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.CONTINUE);
+        }
     }
 
 
