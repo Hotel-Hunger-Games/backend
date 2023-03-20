@@ -36,8 +36,12 @@ public class RealTimeBiddingController {
     @MessageMapping("/{auctionId}")
     @SendTo("/ws-auction")
     public ResponseEntity<?> addBid(@PathVariable("auctionId") Long auctionId, BidDto bid){
-        realTimeBiddingService.addBidToAuction(auctionId, bid);
-        return new ResponseEntity<>(bid, HttpStatus.CREATED);
+        Optional<BidDto> bidDto = realTimeBiddingService.addBidToAuction(auctionId, bid);
+        if(bidDto.isPresent()){
+            return new ResponseEntity<>(bid, HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(bid, HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping ("/{auctionId}")

@@ -47,8 +47,14 @@ public class AuctionController {
 
     @PutMapping("/{auctionId}")
     public ResponseEntity<?> updateAuction(@PathVariable("auctionId") Long auctionId, @RequestBody AuctionDto auctionDto){
-        auctionService.updateAuction(auctionId, auctionDto);
-        return new ResponseEntity<>(auctionDto, HttpStatus.OK);
+        Optional<AuctionDto> auction = auctionService.getAuctionById(auctionId);
+        if(auction.isPresent()){
+            auctionService.updateAuction(auctionId, auctionDto);
+            return new ResponseEntity<>(auctionDto, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(auctionDto, HttpStatus.NOT_FOUND);
+        }
+
     }
 
 

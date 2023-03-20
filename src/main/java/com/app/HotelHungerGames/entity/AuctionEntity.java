@@ -15,12 +15,14 @@ public class AuctionEntity {
     @Column(name = "id")
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.PERSIST)
     private StayEntity stayEntity;
     private BigDecimal startPrice;
+    @Enumerated(EnumType.STRING)
+    private AuctionStatus auctionStatus;
     private BigDecimal actualPrice;
-    private Instant auctionsStartDate;
-    private Instant auctionEndDate;
+    private Instant startDate;
+    private Instant endDate;
     @OneToMany(mappedBy = "auction", cascade = CascadeType.ALL)
     private List<BidEntity> bidHistory = new ArrayList<>();
 
@@ -29,13 +31,13 @@ public class AuctionEntity {
     }
 
     public AuctionEntity(Long id, StayEntity stayEntity, BigDecimal startPrice,
-                         BigDecimal actualPrice, Instant auctionsStartDate, Instant auctionEndDate, List<BidEntity> bidHistory) {
+                         BigDecimal actualPrice, Instant startDate, Instant endDate, List<BidEntity> bidHistory) {
         this.id = id;
         this.stayEntity = stayEntity;
         this.startPrice = startPrice;
         this.actualPrice = actualPrice;
-        this.auctionsStartDate = auctionsStartDate;
-        this.auctionEndDate = auctionEndDate;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.bidHistory = bidHistory;
     }
 
@@ -55,6 +57,14 @@ public class AuctionEntity {
         this.stayEntity = stayEntity;
     }
 
+    public AuctionStatus getAuctionStatus() {
+        return auctionStatus;
+    }
+
+    public void setAuctionStatus(AuctionStatus auctionStatus) {
+        this.auctionStatus = auctionStatus;
+    }
+
     public BigDecimal getStartPrice() {
         return startPrice;
     }
@@ -67,24 +77,24 @@ public class AuctionEntity {
         return actualPrice;
     }
 
-    public Instant getAuctionsStartDate() {
-        return auctionsStartDate;
+    public Instant getStartDate() {
+        return startDate;
     }
 
-    public void setAuctionsStartDate(Instant auctionsStartDate) {
-        this.auctionsStartDate = auctionsStartDate;
+    public void setStartDate(Instant auctionsStartDate) {
+        this.startDate = auctionsStartDate;
     }
 
     public void setActualPrice(BigDecimal actualPrice) {
         this.actualPrice = actualPrice;
     }
 
-    public Instant getAuctionEndDate() {
-        return auctionEndDate;
+    public Instant getEndDate() {
+        return endDate;
     }
 
-    public void setAuctionEndDate(Instant auctionEndDate) {
-        this.auctionEndDate = auctionEndDate;
+    public void setEndDate(Instant auctionEndDate) {
+        this.endDate = auctionEndDate;
     }
 
     public List<BidEntity> getBidHistory() {

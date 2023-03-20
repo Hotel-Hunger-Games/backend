@@ -1,5 +1,7 @@
 package com.app.HotelHungerGames.dto;
 
+import com.app.HotelHungerGames.entity.AuctionStatus;
+
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.List;
@@ -7,16 +9,18 @@ import java.util.List;
 public class AuctionDto {
 
     private Long id;
-    private StayDto stayDto;
+    private StayDto stay;
+    private AuctionStatus auctionStatus;
     private BigDecimal startPrice;
     private BigDecimal actualPrice;
     private Instant startDate;
     private Instant endDate;
     private List<BidDto> bidHistory;
 
-    public AuctionDto(Long id, StayDto stayDto, BigDecimal startPrice, BigDecimal actualPrice, Instant startDate, Instant endDate, List<BidDto> bidHistory) {
+    public AuctionDto(Long id, StayDto stay, AuctionStatus auctionStatus, BigDecimal startPrice, BigDecimal actualPrice, Instant startDate, Instant endDate, List<BidDto> bidHistory) {
         this.id = id;
-        this.stayDto = stayDto;
+        this.stay = stay;
+        this.auctionStatus = auctionStatus;
         this.startPrice = startPrice;
         this.actualPrice = actualPrice;
         this.startDate = startDate;
@@ -35,12 +39,20 @@ public class AuctionDto {
         this.id = id;
     }
 
-    public StayDto getStayDto() {
-        return stayDto;
+    public StayDto getStay() {
+        return stay;
     }
 
-    public void setStayDto(StayDto stayDto) {
-        this.stayDto = stayDto;
+    public void setStay(StayDto stay) {
+        this.stay = stay;
+    }
+
+    public AuctionStatus getAuctionStatus() {
+        return auctionStatus;
+    }
+
+    public void setAuctionStatus(AuctionStatus auctionStatus) {
+        this.auctionStatus = auctionStatus;
     }
 
     public BigDecimal getStartPrice() {

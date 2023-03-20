@@ -10,11 +10,12 @@ public class AuctionMapper {
     public static AuctionDto mapAuctionToDto(AuctionEntity auctionEntity) {
         AuctionDto auctionDto = new AuctionDto();
         auctionDto.setId(auctionEntity.getId());
-        auctionDto.setStayDto(StayMapper.mapStayToDto(auctionEntity.getStayEntity()));
+        auctionDto.setStay(StayMapper.mapStayToDto(auctionEntity.getStayEntity()));
+        auctionDto.setAuctionStatus(auctionEntity.getAuctionStatus());
         auctionDto.setStartPrice(auctionEntity.getStartPrice());
         auctionDto.setActualPrice(auctionEntity.getActualPrice());
-        auctionDto.setStartDate(auctionEntity.getAuctionsStartDate());
-        auctionDto.setEndDate(auctionEntity.getAuctionEndDate());
+        auctionDto.setStartDate(auctionEntity.getStartDate());
+        auctionDto.setEndDate(auctionEntity.getEndDate());
         auctionDto.setBidHistory(auctionEntity.getBidHistory()
                 .stream()
                 .map(BidMapper::mapBidToDto)
@@ -24,11 +25,12 @@ public class AuctionMapper {
 
     public static AuctionEntity mapAuctionToEntity(AuctionDto auctionDto) {
         AuctionEntity auctionEntity = new AuctionEntity();
-        auctionEntity.setStayEntity(StayMapper.mapStayToEntity(auctionDto.getStayDto()));
+        auctionEntity.setStayEntity(StayMapper.mapStayToEntity(auctionDto.getStay()));
+        auctionEntity.setAuctionStatus(auctionDto.getAuctionStatus());
         auctionEntity.setStartPrice(auctionDto.getStartPrice());
         auctionEntity.setActualPrice(auctionDto.getActualPrice());
-        auctionEntity.setAuctionsStartDate(auctionDto.getStartDate());
-        auctionEntity.setAuctionEndDate(auctionDto.getEndDate());
+        auctionEntity.setStartDate(auctionDto.getStartDate());
+        auctionEntity.setEndDate(auctionDto.getEndDate());
 //        auctionEntity.setBidHistory(auctionDto.getBidHistory()
 //                .stream()
 //                .map(BidMapper::mapBidToEntity)
