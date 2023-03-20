@@ -15,9 +15,10 @@ public class AuctionDto {
     private BigDecimal actualPrice;
     private Instant startDate;
     private Instant endDate;
+    private String auctionWinner;
     private List<BidDto> bidHistory;
 
-    public AuctionDto(Long id, StayDto stay, AuctionStatus auctionStatus, BigDecimal startPrice, BigDecimal actualPrice, Instant startDate, Instant endDate, List<BidDto> bidHistory) {
+    public AuctionDto(Long id, StayDto stay, AuctionStatus auctionStatus, BigDecimal startPrice, BigDecimal actualPrice, Instant startDate, Instant endDate, String auctionWinner, List<BidDto> bidHistory) {
         this.id = id;
         this.stay = stay;
         this.auctionStatus = auctionStatus;
@@ -25,6 +26,7 @@ public class AuctionDto {
         this.actualPrice = actualPrice;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.auctionWinner = auctionWinner;
         this.bidHistory = bidHistory;
     }
 
@@ -88,6 +90,14 @@ public class AuctionDto {
 
     public void setEndDate(Instant endDate) {
         this.endDate = endDate;
+    }
+
+    public String getAuctionWinner() {
+        return auctionWinner;
+    }
+
+    public void setAuctionWinner(String auctionWinner) {
+        this.auctionWinner = auctionWinner;
     }
 
     public List<BidDto> getBidHistory() {

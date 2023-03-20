@@ -23,6 +23,7 @@ public class AuctionEntity {
     private BigDecimal actualPrice;
     private Instant startDate;
     private Instant endDate;
+    private String auctionWinner;
     @OneToMany(mappedBy = "auction", cascade = CascadeType.ALL)
     private List<BidEntity> bidHistory = new ArrayList<>();
 
@@ -31,13 +32,14 @@ public class AuctionEntity {
     }
 
     public AuctionEntity(Long id, StayEntity stayEntity, BigDecimal startPrice,
-                         BigDecimal actualPrice, Instant startDate, Instant endDate, List<BidEntity> bidHistory) {
+                         BigDecimal actualPrice, Instant startDate, Instant endDate, String auctionWinner, List<BidEntity> bidHistory) {
         this.id = id;
         this.stayEntity = stayEntity;
         this.startPrice = startPrice;
         this.actualPrice = actualPrice;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.auctionWinner = auctionWinner;
         this.bidHistory = bidHistory;
     }
 
@@ -95,6 +97,14 @@ public class AuctionEntity {
 
     public void setEndDate(Instant auctionEndDate) {
         this.endDate = auctionEndDate;
+    }
+
+    public String getAuctionWinner() {
+        return auctionWinner;
+    }
+
+    public void setAuctionWinner(String auctionWinner) {
+        this.auctionWinner = auctionWinner;
     }
 
     public List<BidEntity> getBidHistory() {

@@ -16,6 +16,7 @@ public class AuctionMapper {
         auctionDto.setActualPrice(auctionEntity.getActualPrice());
         auctionDto.setStartDate(auctionEntity.getStartDate());
         auctionDto.setEndDate(auctionEntity.getEndDate());
+        auctionDto.setAuctionWinner(auctionEntity.getAuctionWinner());
         auctionDto.setBidHistory(auctionEntity.getBidHistory()
                 .stream()
                 .map(BidMapper::mapBidToDto)
@@ -31,6 +32,7 @@ public class AuctionMapper {
         auctionEntity.setActualPrice(auctionDto.getActualPrice());
         auctionEntity.setStartDate(auctionDto.getStartDate());
         auctionEntity.setEndDate(auctionDto.getEndDate());
+        auctionEntity.setAuctionWinner(auctionDto.getAuctionWinner());
 //        auctionEntity.setBidHistory(auctionDto.getBidHistory()
 //                .stream()
 //                .map(BidMapper::mapBidToEntity)
