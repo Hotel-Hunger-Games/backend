@@ -21,8 +21,6 @@ public interface AuctionService {
     Optional<AuctionDto> deleteAuction(Long id);
 
     Optional<AuctionEntity> getAuctionEntityById(Long id);
-
-    Optional<AuctionDto> endAuction(Long id);
     void updateAuctionStatus(AuctionEntity auction, AuctionStatus status);
 
     void endAuctions();
