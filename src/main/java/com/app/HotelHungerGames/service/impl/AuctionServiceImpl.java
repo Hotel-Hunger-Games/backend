@@ -88,7 +88,8 @@ public class AuctionServiceImpl implements AuctionService {
         List<AuctionEntity> startedAuctions = auctionRepository.getAllByAuctionStatus(AuctionStatus.STARTED);
         for (AuctionEntity auction : startedAuctions) {
             if (Instant.now().isAfter(auction.getEndDate())) {
-                emailSender.sendEmailToWinner(auction.getAuctionWinner());
+                System.out.println("finished");
+//                emailSender.sendEmailToWinner(auction.getAuctionWinner());
                 updateAuctionStatus(auction, AuctionStatus.FINISHED);
                 simpMessagingTemplate.convertAndSend(String.format("/ws-auction/%d/end", auction.getId()), auction.getId());
             }
@@ -101,7 +102,7 @@ public class AuctionServiceImpl implements AuctionService {
         List<AuctionEntity> createdAuctions = auctionRepository.getAllByAuctionStatus(AuctionStatus.CREATED);
         for (AuctionEntity auction : createdAuctions) {
             if (Instant.now().isAfter(auction.getStartDate())) {
-                updateAuctionStatus(auction, AuctionStatus.FINISHED);
+                updateAuctionStatus(auction, AuctionStatus.STARTED);
             }
         }
     }
