@@ -42,21 +42,6 @@ public class AuctionServiceImpl implements AuctionService {
     }
 
     @Override
-    public Optional<AuctionDto> endAuction(Long id) {
-        Optional<AuctionEntity> auctionEntity = auctionRepository.findById(id);
-        if(auctionEntity.isPresent()){
-            AuctionEntity auction = auctionEntity.get();
-            if(Instant.now().isAfter(auction.getEndDate())){
-                emailSender.sendEmailToWinner(auction.getAuctionWinner());
-                auction.setAuctionStatus(AuctionStatus.FINISHED);
-                auctionRepository.save(auction);
-                return Optional.of(AuctionMapper.mapAuctionToDto(auction));
-            }
-        }
-        return Optional.empty();
-    }
-
-    @Override
     public List<AuctionDto> getAllAuctions() {
         List<AuctionEntity> auctionEntities = auctionRepository.findAll();
         return auctionEntities.stream().map(AuctionMapper::mapAuctionToDto).toList();
