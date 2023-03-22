@@ -11,6 +11,7 @@ import com.app.HotelHungerGames.service.RealTimeBiddingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -38,7 +39,7 @@ public class RealTimeBiddingServiceImpl implements RealTimeBiddingService {
     @Override
     public Optional<BidDto> addBidToAuction(Long auctionId, BidDto bid) {
         Optional<AuctionEntity> auctionEntity = auctionRepository.findById(auctionId);
-        if(auctionEntity.isPresent()){
+        if(auctionEntity.isPresent() && Instant.now().isBefore(auctionEntity.get().getEndDate())){
             AuctionEntity auction = auctionEntity.get();
             bid.setAuction(AuctionMapper.mapAuctionToDto(auctionEntity.get()));
             bidRepository.save(BidMapper.mapBidToEntity(bid));

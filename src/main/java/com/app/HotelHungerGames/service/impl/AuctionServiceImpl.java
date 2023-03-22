@@ -1,6 +1,6 @@
 package com.app.HotelHungerGames.service.impl;
 
-import com.app.HotelHungerGames.config.EmailSender;
+import com.app.HotelHungerGames.config.EmailSenderConfig;
 import com.app.HotelHungerGames.dto.AuctionDto;
 import com.app.HotelHungerGames.entity.AuctionEntity;
 import com.app.HotelHungerGames.entity.AuctionStatus;
@@ -8,6 +8,8 @@ import com.app.HotelHungerGames.mapper.AuctionMapper;
 import com.app.HotelHungerGames.repository.AuctionRepository;
 import com.app.HotelHungerGames.service.AuctionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -18,13 +20,15 @@ import java.util.Optional;
 public class AuctionServiceImpl implements AuctionService {
 
     private final AuctionRepository auctionRepository;
-    private final EmailSender emailSender;
+    private final EmailSenderConfig emailSender;
+    private final SimpMessagingTemplate simpMessagingTemplate;
 
 
     @Autowired
-    public AuctionServiceImpl(AuctionRepository auctionRepository, EmailSender emailSender) {
+    public AuctionServiceImpl(AuctionRepository auctionRepository, EmailSenderConfig emailSender, SimpMessagingTemplate simpMessagingTemplate) {
         this.auctionRepository = auctionRepository;
         this.emailSender = emailSender;
+        this.simpMessagingTemplate = simpMessagingTemplate;
     }
 
     @Override
@@ -42,7 +46,7 @@ public class AuctionServiceImpl implements AuctionService {
         Optional<AuctionEntity> auctionEntity = auctionRepository.findById(id);
         if(auctionEntity.isPresent()){
             AuctionEntity auction = auctionEntity.get();
-            if(auction.getEndDate().isBefore(Instant.now())){
+            if(Instant.now().isAfter(auction.getEndDate())){
                 emailSender.sendEmailToWinner(auction.getAuctionWinner());
                 auction.setAuctionStatus(AuctionStatus.FINISHED);
                 auctionRepository.save(auction);
@@ -86,5 +90,34 @@ public class AuctionServiceImpl implements AuctionService {
         }
     }
 
+    @Override
+    public void updateAuctionStatus(AuctionEntity auction, AuctionStatus status){
+        auction.setAuctionStatus(status);
+        auctionRepository.save(auction);
+    }
 
+
+    @Override
+    @Scheduled(fixedDelay = 5000)
+    public void endAuctions() {
+        List<AuctionEntity> startedAuctions = auctionRepository.getAllByAuctionStatus(AuctionStatus.STARTED);
+        for (AuctionEntity auction : startedAuctions) {
+            if (Instant.now().isAfter(auction.getEndDate())) {
+                emailSender.sendEmailToWinner(auction.getAuctionWinner());
+                updateAuctionStatus(auction, AuctionStatus.FINISHED);
+                simpMessagingTemplate.convertAndSend(String.format("/ws-auction/%d/end", auction.getId()), auction.getId());
+            }
+        }
+    }
+
+    @Override
+    @Scheduled(fixedDelay = 10000)
+    public void startAuctions() {
+        List<AuctionEntity> createdAuctions = auctionRepository.getAllByAuctionStatus(AuctionStatus.CREATED);
+        for (AuctionEntity auction : createdAuctions) {
+            if (Instant.now().isAfter(auction.getStartDate())) {
+                updateAuctionStatus(auction, AuctionStatus.FINISHED);
+            }
+        }
+    }
 }

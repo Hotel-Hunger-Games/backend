@@ -1,9 +1,7 @@
 package com.app.HotelHungerGames.controller;
 
 
-import com.app.HotelHungerGames.dto.AuctionDto;
 import com.app.HotelHungerGames.dto.BidDto;
-import com.app.HotelHungerGames.service.AuctionService;
 import com.app.HotelHungerGames.service.RealTimeBiddingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,7 +28,7 @@ public class RealTimeBiddingController {
 
     @Autowired
     public RealTimeBiddingController(RealTimeBiddingService realTimeBiddingService) {
-        this.realTimeBiddingService = realTimeBiddingService;
+        this.realTimeBiddingService = realTimeBiddingService;;
     }
 
     @MessageMapping("/{auctionId}")
@@ -49,5 +47,7 @@ public class RealTimeBiddingController {
         List<BidDto> bidHistory = realTimeBiddingService.getBidHistoryByAuctionId(auctionId);
         return new ResponseEntity<>(bidHistory, HttpStatus.OK);
     }
+
+
 
 }
