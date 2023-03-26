@@ -89,7 +89,7 @@ public class AuctionServiceImpl implements AuctionService {
         for (AuctionEntity auction : startedAuctions) {
             if (Instant.now().isAfter(auction.getEndDate())) {
                 System.out.println("finished");
-//                emailSender.sendEmailToWinner(auction.getAuctionWinner());
+                emailSender.sendEmailToWinner(auction.getAuctionWinner());
                 updateAuctionStatus(auction, AuctionStatus.FINISHED);
                 simpMessagingTemplate.convertAndSend(String.format("/ws-auction/%d/end", auction.getId()), auction.getId());
             }

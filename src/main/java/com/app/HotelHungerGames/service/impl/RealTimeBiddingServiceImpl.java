@@ -51,7 +51,8 @@ public class RealTimeBiddingServiceImpl implements RealTimeBiddingService {
 
     }
 
-    private void updateAuctionPrice(BidDto bid, AuctionEntity auction) {
+    @Override
+    public void updateAuctionPrice(BidDto bid, AuctionEntity auction) {
         auction.setActualPrice(bid.getPrice());
         auctionRepository.save(auction);
     }
