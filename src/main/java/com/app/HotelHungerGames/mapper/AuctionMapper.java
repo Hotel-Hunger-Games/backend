@@ -17,10 +17,10 @@ public class AuctionMapper {
         auctionDto.setStartDate(auctionEntity.getStartDate());
         auctionDto.setEndDate(auctionEntity.getEndDate());
         auctionDto.setAuctionWinner(auctionEntity.getAuctionWinner());
-        auctionDto.setBidHistory(auctionEntity.getBidHistory()
-                .stream()
-                .map(BidMapper::mapBidToDto)
-                .collect(Collectors.toList()));
+//        auctionDto.setBidHistory(auctionEntity.getBidHistory()
+//                .stream()
+//                .map(BidMapper::mapBidToDto)
+//                .collect(Collectors.toList()));
         return auctionDto;
     }
 

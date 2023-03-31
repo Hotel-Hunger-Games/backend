@@ -15,13 +15,13 @@ public class RoomEntity {
     @NotNull
     private String name;
     private int accommodationCapacity;
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<Integer> bedsSizes;
 
     @OneToMany(mappedBy = "roomEntity")
     private List<StayEntity> stays = new ArrayList<>();
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<String> images;
     public RoomEntity() {
 

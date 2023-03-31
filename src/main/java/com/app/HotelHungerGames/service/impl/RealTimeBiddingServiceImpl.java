@@ -10,6 +10,7 @@ import com.app.HotelHungerGames.repository.BidRepository;
 import com.app.HotelHungerGames.service.RealTimeBiddingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.util.List;
@@ -42,6 +43,7 @@ public class RealTimeBiddingServiceImpl implements RealTimeBiddingService {
         if(auctionEntity.isPresent() && Instant.now().isBefore(auctionEntity.get().getEndDate())){
             AuctionEntity auction = auctionEntity.get();
             bid.setAuction(AuctionMapper.mapAuctionToDto(auctionEntity.get()));
+            bid.setBidTime(Instant.now());
             bidRepository.save(BidMapper.mapBidToEntity(bid));
             updateAuctionPrice(bid, auction);
             return Optional.of(bid);
@@ -52,8 +54,9 @@ public class RealTimeBiddingServiceImpl implements RealTimeBiddingService {
     }
 
     @Override
+    @Transactional
     public void updateAuctionPrice(BidDto bid, AuctionEntity auction) {
         auction.setActualPrice(bid.getPrice());
-        auctionRepository.save(auction);
+        auctionRepository.saveAndFlush(auction);
     }
 }

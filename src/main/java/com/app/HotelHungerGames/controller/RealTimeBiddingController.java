@@ -1,6 +1,7 @@
 package com.app.HotelHungerGames.controller;
 
 
+import com.app.HotelHungerGames.dto.AuctionDto;
 import com.app.HotelHungerGames.dto.BidDto;
 import com.app.HotelHungerGames.service.RealTimeBiddingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,6 +40,21 @@ public class RealTimeBiddingController {
             return new ResponseEntity<>(bid, HttpStatus.CREATED);
         } else {
             return new ResponseEntity<>(bid, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/test")
+    public ResponseEntity<?> test() {
+        System.out.println("dupa");
+        BidDto bidDto = new BidDto();
+        bidDto.setPrice(BigDecimal.valueOf(10));
+        bidDto.setEmail("test");
+        Optional<BidDto> bid = realTimeBiddingService.addBidToAuction(5L, bidDto);
+        System.out.println(bid);
+        if(bid.isPresent()){
+            return new ResponseEntity<>(bid, HttpStatus.FOUND);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
