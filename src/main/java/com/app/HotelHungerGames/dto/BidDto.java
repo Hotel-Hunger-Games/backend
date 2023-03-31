@@ -7,15 +7,14 @@ import java.time.Instant;
 public class BidDto {
 
     private Long id;
-    private AuctionDto auction;
+//    private AuctionDto auction;
     private Long auctionId;
     private String email;
     private BigDecimal price;
     private Instant bidTime;
 
-    public BidDto(Long id, AuctionDto auction, Long auctionId, String email, BigDecimal price, Instant bidTime) {
+    public BidDto(Long id, Long auctionId, String email, BigDecimal price, Instant bidTime) {
         this.id = id;
-        this.auction = auction;
         this.auctionId = auctionId;
         this.email = email;
         this.price = price;
@@ -39,14 +38,6 @@ public class BidDto {
 
     public void setAuctionId(Long auctionId) {
         this.auctionId = auctionId;
-    }
-
-    public AuctionDto getAuction() {
-        return auction;
-    }
-
-    public void setAuction(AuctionDto auction) {
-        this.auction = auction;
     }
 
     public String getEmail() {

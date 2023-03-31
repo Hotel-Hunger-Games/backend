@@ -10,7 +10,7 @@ public class BidMapper {
     public static BidDto mapBidToDto(BidEntity bidEntity) {
         BidDto bidDto = new BidDto();
         bidDto.setBidTime(bidEntity.getBidTime());
-        bidDto.setAuctionId(bidEntity.getAuction().getId());
+        bidDto.setAuctionId(bidEntity.getAuctionId());
         bidDto.setEmail(bidEntity.getEmail());
         bidDto.setId(bidEntity.getId());
         bidDto.setPrice(bidEntity.getPrice());
@@ -21,6 +21,7 @@ public class BidMapper {
         BidEntity bidEntity = new BidEntity();
         bidEntity.setBidTime(bidDto.getBidTime());
         bidEntity.setPrice(bidDto.getPrice());
+        bidEntity.setAuctionId(bidDto.getAuctionId());
         bidEntity.setId(bidDto.getId());
         bidEntity.setEmail(bidDto.getEmail());
         return bidEntity;

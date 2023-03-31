@@ -11,8 +11,9 @@ public class BidEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne(fetch = FetchType.LAZY)
-    private AuctionEntity auction;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    private AuctionEntity auction;
+    private Long auctionId;
     private String email;
     private BigDecimal price;
     private Instant bidTime;
@@ -21,10 +22,9 @@ public class BidEntity {
     public BidEntity() {
     }
 
-    public BidEntity(Long id, AuctionEntity auction, String email,
+    public BidEntity(Long id, String email,
                      BigDecimal price, Instant bidTime) {
         this.id = id;
-        this.auction = auction;
         this.email = email;
         this.price = price;
         this.bidTime = bidTime;
@@ -38,12 +38,12 @@ public class BidEntity {
         this.id = id;
     }
 
-    public AuctionEntity getAuction() {
-        return auction;
+    public Long getAuctionId() {
+        return auctionId;
     }
 
-    public void setAuction(AuctionEntity auction) {
-        this.auction = auction;
+    public void setAuctionId(Long auctionId) {
+        this.auctionId = auctionId;
     }
 
     public String getEmail() {

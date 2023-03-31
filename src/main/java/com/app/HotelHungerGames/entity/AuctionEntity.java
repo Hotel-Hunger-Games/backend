@@ -24,8 +24,6 @@ public class AuctionEntity {
     private Instant startDate;
     private Instant endDate;
     private String auctionWinner;
-    @OneToMany(mappedBy = "auction", cascade = CascadeType.ALL)
-    private List<BidEntity> bidHistory = new ArrayList<>();
 
 
     public AuctionEntity() {
@@ -40,7 +38,6 @@ public class AuctionEntity {
         this.startDate = startDate;
         this.endDate = endDate;
         this.auctionWinner = auctionWinner;
-        this.bidHistory = bidHistory;
     }
 
     public Long getId() {
@@ -105,13 +102,5 @@ public class AuctionEntity {
 
     public void setAuctionWinner(String auctionWinner) {
         this.auctionWinner = auctionWinner;
-    }
-
-    public List<BidEntity> getBidHistory() {
-        return bidHistory;
-    }
-
-    public void setBidHistory(List<BidEntity> bidHistory) {
-        this.bidHistory = bidHistory;
     }
 }

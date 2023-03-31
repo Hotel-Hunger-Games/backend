@@ -42,7 +42,7 @@ public class RealTimeBiddingServiceImpl implements RealTimeBiddingService {
         Optional<AuctionEntity> auctionEntity = auctionRepository.findById(auctionId);
         if(auctionEntity.isPresent() && Instant.now().isBefore(auctionEntity.get().getEndDate())){
             AuctionEntity auction = auctionEntity.get();
-            bid.setAuction(AuctionMapper.mapAuctionToDto(auctionEntity.get()));
+            bid.setAuctionId(auctionId);
             bid.setBidTime(Instant.now());
             bidRepository.save(BidMapper.mapBidToEntity(bid));
             updateAuctionPrice(bid, auction);

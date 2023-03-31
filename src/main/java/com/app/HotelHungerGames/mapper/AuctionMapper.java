@@ -2,6 +2,8 @@ package com.app.HotelHungerGames.mapper;
 
 import com.app.HotelHungerGames.dto.AuctionDto;
 import com.app.HotelHungerGames.entity.AuctionEntity;
+import com.app.HotelHungerGames.repository.BidRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.stream.Collectors;
 
