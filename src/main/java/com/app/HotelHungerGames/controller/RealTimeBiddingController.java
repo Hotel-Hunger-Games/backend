@@ -30,8 +30,8 @@ public class RealTimeBiddingController {
         this.realTimeBiddingService = realTimeBiddingService;;
     }
 
-    @MessageMapping("/rt-auction/bid/{productId}")
-    @SendTo("/rt-product/auction-updates/{productId}")
+    @MessageMapping("/rt-auction/bid/{auctionId}")
+    @SendTo("/rt-product/auction-updates/{auctionId}")
     public ResponseEntity<?> addBid(@DestinationVariable("auctionId") Long auctionId, BidDto bid){
         Optional<BidDto> bidDto = realTimeBiddingService.addBidToAuction(auctionId, bid);
         if(bidDto.isPresent()){
