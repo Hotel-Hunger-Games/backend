@@ -43,21 +43,6 @@ public class RealTimeBiddingController {
         }
     }
 
-    @GetMapping("/test")
-    public ResponseEntity<?> test() {
-        System.out.println("dupa");
-        BidDto bidDto = new BidDto();
-        bidDto.setPrice(BigDecimal.valueOf(10));
-        bidDto.setEmail("test");
-        Optional<BidDto> bid = realTimeBiddingService.addBidToAuction(5L, bidDto);
-        System.out.println(bid);
-        if(bid.isPresent()){
-            return new ResponseEntity<>(bid, HttpStatus.FOUND);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-
 
     @GetMapping ("/bid/{auctionId}")
     public ResponseEntity<?> getBidHistoryByAuctionId(@PathVariable("auctionId") Long auctionId){
