@@ -42,9 +42,7 @@ public class RealTimeBiddingServiceImpl implements RealTimeBiddingService {
         Optional<AuctionEntity> auctionEntity = auctionRepository.findById(auctionId);
         if(auctionEntity.isPresent() && Instant.now().isBefore(auctionEntity.get().getEndDate())){
             AuctionEntity auction = auctionEntity.get();
-            bid.setAuctionId(auctionId);
-            bid.setBidTime(Instant.now());
-            bidRepository.save(BidMapper.mapBidToEntity(bid));
+            bidRepository.save(BidMapper.mapBidToEntity(new BidDto(bid.id(), auctionId, bid.email(), bid.price(),Instant.now())));
             updateAuctionPrice(bid, auction);
             return Optional.of(bid);
         } else {
@@ -56,7 +54,7 @@ public class RealTimeBiddingServiceImpl implements RealTimeBiddingService {
     @Override
     @Transactional
     public void updateAuctionPrice(BidDto bid, AuctionEntity auction) {
-        auction.setActualPrice(bid.getPrice());
+        auction.setActualPrice(bid.price());
         auctionRepository.saveAndFlush(auction);
     }
 }

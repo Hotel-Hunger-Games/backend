@@ -8,32 +8,28 @@ import java.util.stream.Collectors;
 public class RoomMapper {
 
     public static RoomDto mapRoomToDto(RoomEntity roomEntity){
-        RoomDto roomDto = new RoomDto();
-        roomDto.setId(roomEntity.getId());
-        roomDto.setAccommodationCapacity(roomEntity.getAccommodationCapacity());
-        roomDto.setBedsSizes(roomEntity.getBedsSizes());
-        roomDto.setImages(roomEntity.getImages());
-        roomDto.setName(roomEntity.getName());
-//        roomDto.setStays(roomEntity.getStays()
-//                .stream()
-//                .map(StayMapper::mapStayToDto)
-//                .collect(Collectors.toList()));
-        return roomDto;
+        return new RoomDto(
+                roomEntity.getId(),
+                roomEntity.getName(),
+                roomEntity.getAccommodationCapacity(),
+                roomEntity.getBedsSizes(),
+                null,
+                roomEntity.getImages());
     }
 
     public static RoomEntity mapRoomToEntity(RoomDto roomDto){
         RoomEntity roomEntity = new RoomEntity();
-        roomEntity.setId(roomDto.getId());
-        roomEntity.setName(roomDto.getName());
-        roomEntity.setAccommodationCapacity(roomDto.getAccommodationCapacity());
-        if(roomDto.getStays() != null){
-            roomEntity.setStays(roomDto.getStays()
+        roomEntity.setId(roomDto.id());
+        roomEntity.setName(roomDto.name());
+        roomEntity.setAccommodationCapacity(roomDto.accommodationCapacity());
+        if(roomDto.stays() != null){
+            roomEntity.setStays(roomDto.stays()
                     .stream()
                     .map(StayMapper::mapStayToEntity)
                     .collect(Collectors.toList()));
         }
-        roomEntity.setBedsSizes(roomDto.getBedsSizes());
-        roomEntity.setImages(roomDto.getImages());
+        roomEntity.setBedsSizes(roomDto.bedsSizes());
+        roomEntity.setImages(roomDto.images());
         return roomEntity;
     }
 }

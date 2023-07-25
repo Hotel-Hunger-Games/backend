@@ -8,22 +8,21 @@ public class BidMapper {
 
 
     public static BidDto mapBidToDto(BidEntity bidEntity) {
-        BidDto bidDto = new BidDto();
-        bidDto.setBidTime(bidEntity.getBidTime());
-        bidDto.setAuctionId(bidEntity.getAuctionId());
-        bidDto.setEmail(bidEntity.getEmail());
-        bidDto.setId(bidEntity.getId());
-        bidDto.setPrice(bidEntity.getPrice());
-        return bidDto;
+        return new BidDto(
+                bidEntity.getId(),
+                bidEntity.getAuctionId(),
+                bidEntity.getEmail(),
+                bidEntity.getPrice(),
+                bidEntity.getBidTime());
     }
 
     public static BidEntity mapBidToEntity(BidDto bidDto) {
         BidEntity bidEntity = new BidEntity();
-        bidEntity.setBidTime(bidDto.getBidTime());
-        bidEntity.setPrice(bidDto.getPrice());
-        bidEntity.setAuctionId(bidDto.getAuctionId());
-        bidEntity.setId(bidDto.getId());
-        bidEntity.setEmail(bidDto.getEmail());
+        bidEntity.setId(bidDto.id());
+        bidEntity.setAuctionId(bidDto.auctionId());
+        bidEntity.setBidTime(bidDto.bidTime());
+        bidEntity.setPrice(bidDto.price());
+        bidEntity.setEmail(bidDto.email());
         return bidEntity;
     }
 }
