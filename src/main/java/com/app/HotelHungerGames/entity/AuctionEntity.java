@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.app.HotelHungerGames.dto.BidDto;
 import jakarta.persistence.*;
 
 @Entity
@@ -24,6 +26,8 @@ public class AuctionEntity {
     private Instant startDate;
     private Instant endDate;
     private String auctionWinner;
+    @OneToMany
+    private List<BidEntity> bidHistory;
 
 
     public AuctionEntity() {
@@ -38,6 +42,7 @@ public class AuctionEntity {
         this.startDate = startDate;
         this.endDate = endDate;
         this.auctionWinner = auctionWinner;
+        this.bidHistory = bidHistory;
     }
 
     public Long getId() {
@@ -102,5 +107,17 @@ public class AuctionEntity {
 
     public void setAuctionWinner(String auctionWinner) {
         this.auctionWinner = auctionWinner;
+    }
+
+    public List<BidEntity> getBidHistory() {
+        return bidHistory;
+    }
+
+    public void addBidToHistory(BidEntity bidEntity) {
+        bidHistory.add(bidEntity);
+    }
+
+    public void setBidHistory(List<BidEntity> bidHistory) {
+        this.bidHistory = bidHistory;
     }
 }

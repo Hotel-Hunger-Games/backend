@@ -2,9 +2,11 @@ package com.app.HotelHungerGames.service.impl;
 
 import com.app.HotelHungerGames.config.EmailSenderConfig;
 import com.app.HotelHungerGames.dto.AuctionDto;
+import com.app.HotelHungerGames.dto.BidDto;
 import com.app.HotelHungerGames.entity.AuctionEntity;
 import com.app.HotelHungerGames.entity.AuctionStatus;
 import com.app.HotelHungerGames.mapper.AuctionMapper;
+import com.app.HotelHungerGames.mapper.BidMapper;
 import com.app.HotelHungerGames.repository.AuctionRepository;
 import com.app.HotelHungerGames.service.AuctionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,6 +84,8 @@ public class AuctionServiceImpl implements AuctionService {
     }
 
 
+
+
     @Override
     @Scheduled(fixedDelay = 5000)
     public void endAuctions() {
@@ -105,5 +109,10 @@ public class AuctionServiceImpl implements AuctionService {
                 updateAuctionStatus(auction, AuctionStatus.STARTED);
             }
         }
+    }
+
+    public void addBid(Long auctionId, BidDto bidDto) {
+        Optional<AuctionEntity> auction = auctionRepository.findById(auctionId);
+        auction.ifPresent(auctionEntity -> auctionEntity.addBidToHistory(BidMapper.mapBidToEntity(bidDto)));
     }
 }
